@@ -1,37 +1,20 @@
-/* const person = require('./person');
-console.log(person.name);
- */
+const http = require('http');
+const path = require('path');
+const fs = require('fs');
 
-let objects = [
-  { id: 1, value: 7 },
-  { id: 2, value: 5 },
-  { id: 3, value: 6 },
-  { id: 4, value: 6 },
-  { id: 5, value: 11 },
-  { id: 6, value: 2 },
-  { id: 7, value: 1 },
-  { id: 8, value: 10 },
-];
+/* function stopserver() {
+  server.close(() => {
+    console.log('Server stopped listening on port 5000');
+  });
+} */
 
-// Set initial values for the highest and lowest objects
-let lowestObject = objects[0];
-let highestObject = objects[0];
-
-console.log(`Highest object: ${highestObject.value}`);
-console.log(`Lowest object: ${lowestObject.value}`);
-console.log('Running...');
-
-while (objects.length > 0) {
-  // Remove the first object from the array
-  let object = objects.shift();
-
-  // Compare the object's value to the current highest and lowest values
-  if (object.value > highestObject.value) {
-    highestObject = object;
+const server = http.createServer((req, res) => {
+  console.log(req.url);
+  if (req.url === '/') {
+    res.end('<h1>Home</h1>');
   }
-  if (object.value < lowestObject.value) {
-    lowestObject = object;
-  }
-}
-console.log(`Highest object: ${highestObject.value}`);
-console.log(`Lowest object: ${lowestObject.value}`);
+});
+
+const PORT = process.env.PORT || 5001;
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

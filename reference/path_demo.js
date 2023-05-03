@@ -11,3 +11,12 @@ console.log(`Dirname: ${path.dirname(__filename)}`);
 
 // File extension
 console.log(`Extname: ${path.extname(__filename)}`);
+
+// Create path object
+console.log(`Path object: ${path.parse(__filename)}`);
+console.log(path.parse(__filename));
+
+// Concatenate paths
+console.log(
+  `Join path: ${path.join(__dirname, 'part1', 'part2', 'hello.html')}`
+);
